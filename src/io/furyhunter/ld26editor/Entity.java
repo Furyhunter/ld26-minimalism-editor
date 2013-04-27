@@ -2,6 +2,7 @@ package io.furyhunter.ld26editor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.PrintWriter;
 
 public class Entity {
 	public float x;
@@ -22,5 +23,9 @@ public class Entity {
 		}
 		
 		return false;
+	}
+	
+	public void save(PrintWriter write) {
+		write.println("Unknown");
 	}
 }

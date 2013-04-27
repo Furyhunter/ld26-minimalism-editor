@@ -8,15 +8,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JPanel;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
 
 public class EditorPanel extends JPanel {
 
 	private Level level;
 	
+	private EditorMain myparent;
+	
 	public static final int GRID_SIZE = 16;
 	
 	public int offx;
 	public int offy;
+	
+	private EntityTypes type = EntityTypes.Tile;
 	
 	/**
 	 * 
@@ -26,13 +32,47 @@ public class EditorPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EditorPanel() {
+	public EditorPanel(EditorMain parent) {
+		addMouseWheelListener(new MouseWheelListener() {
+			public void mouseWheelMoved(MouseWheelEvent e) {
+				offy += e.getWheelRotation() * GRID_SIZE;
+				repaint();
+			}
+		});
+		myparent = parent;
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON3) {
-					Class type = level.remove(e.getX(), e.getY());
-					System.out.println(type.getName());
+					Class itstype = level.remove(e.getX(), e.getY());
+					if (itstype != null) {
+						for (EntityTypes v : EntityTypes.values()) {
+							if (v.simple.equals(itstype.getSimpleName())) {
+								type = v;
+								myparent.getComboBox().setSelectedItem(v);
+								break;
+							}
+						}
+						repaint();
+					}
+				}
+				if (e.getButton() == MouseEvent.BUTTON1) {
+					Entity en = null;
+					switch (type) {
+					case Player:
+						en = new Player();
+						en.x = e.getX() - (e.getX() % GRID_SIZE);
+						en.y = e.getY() - (e.getY() % GRID_SIZE);
+						break;
+					case Tile:
+						en = new Tile();
+						en.x = e.getX() - (e.getX() % GRID_SIZE);
+						en.y = e.getY() - (e.getY() % GRID_SIZE);
+						break;
+					}
+					
+					level.add(type, e.getX() - (e.getX() % GRID_SIZE) + offx, e.getY() - (e.getY() % GRID_SIZE) + offy);
+					repaint();
 				}
 			}
 		});
@@ -50,6 +90,10 @@ public class EditorPanel extends JPanel {
 	public void setLevel(Level l) {
 		level = l;
 		repaint();
+	}
+	
+	public void setType(EntityTypes types) {
+		type = types;
 	}
 
 	@Override
@@ -69,5 +113,9 @@ public class EditorPanel extends JPanel {
 		for (int i = 0; i < 480; i += GRID_SIZE) {
 			g.drawLine(0, i, 640, i);
 		}
+	}
+
+	public Level getLevel() {
+		return level;
 	}
 }
