@@ -17,6 +17,8 @@ public class EditorPanel extends JPanel {
 	
 	private EditorMain myparent;
 	
+	public String metadata;
+	
 	public static final int GRID_SIZE = 16;
 	
 	public int offx;
@@ -58,20 +60,8 @@ public class EditorPanel extends JPanel {
 				}
 				if (e.getButton() == MouseEvent.BUTTON1) {
 					Entity en = null;
-					switch (type) {
-					case Player:
-						en = new Player();
-						en.x = e.getX() - (e.getX() % GRID_SIZE);
-						en.y = e.getY() - (e.getY() % GRID_SIZE);
-						break;
-					case Tile:
-						en = new Tile();
-						en.x = e.getX() - (e.getX() % GRID_SIZE);
-						en.y = e.getY() - (e.getY() % GRID_SIZE);
-						break;
-					}
 					
-					level.add(type, e.getX() - (e.getX() % GRID_SIZE) + offx, e.getY() - (e.getY() % GRID_SIZE) + offy);
+					level.add(type, e.getX() - (e.getX() % GRID_SIZE) + offx, e.getY() - (e.getY() % GRID_SIZE) + offy, metadata);
 					repaint();
 				}
 			}

@@ -23,6 +23,12 @@ import java.awt.FlowLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JTextField;
+import javax.swing.BoxLayout;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.event.CaretListener;
+import javax.swing.event.CaretEvent;
 
 public class EditorMain {
 
@@ -36,6 +42,7 @@ public class EditorMain {
 	private final Action saveas = new SaveAs();
 	private final Action newbuf = new New();
 	private final Action exit = new Exit();
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -115,16 +122,25 @@ public class EditorMain {
 		
 		JPanel panel = new JPanel();
 		frmMinimalismEditor.getContentPane().add(panel, BorderLayout.EAST);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		comboBox = new JComboBox();
+		panel.add(comboBox);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editor.setType((EntityTypes)comboBox.getItemAt(comboBox.getSelectedIndex()));
 			}
 		});
 		comboBox.setModel(new DefaultComboBoxModel(EntityTypes.values()));
-		panel.add(comboBox);
+		
+		textField = new JTextField();
+		textField.addCaretListener(new CaretListener() {
+			public void caretUpdate(CaretEvent e) {
+				editor.metadata = textField.getText();
+			}
+		});
+		panel.add(textField);
+		textField.setColumns(10);
 	}
 
 	public JComboBox getComboBox() {

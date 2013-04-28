@@ -26,6 +26,7 @@ public class Level {
 		
 		while (s.hasNext()) {
 			String type = s.next();
+			System.out.println("Found " + type);
 			if (type.equals("Tile")) {
 				Tile t = new Tile();
 				t.x = s.nextFloat();
@@ -48,13 +49,31 @@ public class Level {
 					SpringU u = new SpringU();
 					u.x = x;
 					u.y = y;
+					entities.add(u);
 					break;
 				case 1:
 					SpringD d = new SpringD();
 					d.x = x;
 					d.y = y;
+					entities.add(d);
+					break;
+				case 2:
+					SpringL l = new SpringL();
+					l.x = x;
+					l.y = y;
+					entities.add(l);
+					break;
+				case 3:
+					SpringR r = new SpringR();
+					r.x = x;
+					r.y = y;
+					entities.add(r);
 					break;
 				}
+				
+			}
+			if (type.equals("SwitchedDoor")) {
+				SwitchedTile sd = new SwitchedTile();
 				
 			}
 		}
@@ -92,7 +111,7 @@ public class Level {
 		return toRemove == null ? null : toRemove.getClass();
 	}
 	
-	public void add(EntityTypes type, int x, int y) {
+	public void add(EntityTypes type, int x, int y, String metadata) {
 		Entity en = null;
 		switch (type) {
 		case Player:
@@ -107,9 +126,22 @@ public class Level {
 		case SpringD:
 			en = new SpringD();
 			break;
+		case SpringL:
+			en = new SpringL();
+			break;
+		case SpringR:
+			en = new SpringR();
+			break;
+		case Switch:
+			en = new Switch();
+			break;
+		case SwitchedTile:
+			en = new SwitchedTile();
+			break;
 		}		
 		en.x = x;
 		en.y = y;
+		en.metadata = metadata;
 		
 		entities.add(en);
 	}
