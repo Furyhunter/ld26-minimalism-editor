@@ -26,7 +26,6 @@ public class Level {
 		
 		while (s.hasNext()) {
 			String type = s.next();
-			System.out.println("Found " + type);
 			if (type.equals("Tile")) {
 				Tile t = new Tile();
 				t.x = s.nextFloat();
@@ -93,6 +92,15 @@ public class Level {
 				AboveTile a = new AboveTile();
 				a.x = s.nextFloat();
 				a.y = s.nextFloat();
+				
+				entities.add(a);
+			}
+			
+			if (type.equals("NextLevel")) {
+				NextLevel a = new NextLevel();
+				a.x = s.nextFloat();
+				a.y = s.nextFloat();
+				a.metadata = s.next();
 				
 				entities.add(a);
 			}

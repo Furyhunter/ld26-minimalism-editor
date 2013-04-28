@@ -37,7 +37,7 @@ public class EditorPanel extends JPanel {
 	public EditorPanel(EditorMain parent) {
 		addMouseWheelListener(new MouseWheelListener() {
 			public void mouseWheelMoved(MouseWheelEvent e) {
-				offy += e.getWheelRotation() * GRID_SIZE;
+				offy += e.getWheelRotation() * GRID_SIZE * 2;
 				repaint();
 			}
 		});
@@ -79,6 +79,8 @@ public class EditorPanel extends JPanel {
 	
 	public void setLevel(Level l) {
 		level = l;
+		offx = 0;
+		offy = 0;
 		repaint();
 	}
 	
