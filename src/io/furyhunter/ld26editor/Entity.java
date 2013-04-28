@@ -9,7 +9,7 @@ public class Entity {
 	public float y;
 	public float width = 32;
 	public float height = 32;
-	public String metadata;
+	public String metadata = "";
 	
 	public void draw(Graphics g, int offx, int offy) {
 		g.setColor(Color.RED);

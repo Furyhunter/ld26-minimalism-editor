@@ -72,12 +72,22 @@ public class Level {
 				
 			}
 			
-			if (type.equals("SwitchedDoor")) {
+			if (type.equals("SwitchedTile")) {
 				SwitchedTile sd = new SwitchedTile();
 				sd.x = s.nextFloat();
 				sd.y = s.nextFloat();
+				sd.metadata = s.next();
 				
 				entities.add(sd);
+			}
+			
+			if (type.equals("Switch")) {
+				Switch sw = new Switch();
+				sw.x = s.nextFloat();
+				sw.y = s.nextFloat();
+				sw.metadata = s.next();
+				
+				entities.add(sw);
 			}
 			
 			if (type.equals("SmallTile")) {
