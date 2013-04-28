@@ -11,7 +11,8 @@ public enum EntityTypes {
 	SwitchedTile(SwitchedTile.class, "Switched Tile"),
 	SmallTile(SmallTile.class, "Small Tile"),
 	AboveTile(AboveTile.class, "Above Tile"),
-	NextLevel(NextLevel.class, "Next Level");
+	NextLevel(NextLevel.class, "Next Level"),
+	EndGameGate(EndGameGate.class, "End Game Gate");
 	
 	Class<?> type;
 	String display;

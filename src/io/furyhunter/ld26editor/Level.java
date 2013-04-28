@@ -104,6 +104,14 @@ public class Level {
 				
 				entities.add(a);
 			}
+			
+			if (type.equals("EndGameGate")) {
+				EndGameGate g = new EndGameGate();
+				g.x = s.nextFloat();
+				g.y = s.nextFloat();
+				
+				entities.add(g);
+			}
 		}
 		
 		System.out.printf("%d entities found\n", entities.size());
