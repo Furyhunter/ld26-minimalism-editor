@@ -44,7 +44,7 @@ public class EditorPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON3) {
-					Class itstype = level.remove(e.getX(), e.getY());
+					Class itstype = level.remove(e.getX() + offx, e.getY() + offy);
 					if (itstype != null) {
 						for (EntityTypes v : EntityTypes.values()) {
 							if (v.simple.equals(itstype.getSimpleName())) {

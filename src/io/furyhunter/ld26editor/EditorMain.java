@@ -164,7 +164,7 @@ public class EditorMain {
 			if (f != null) {
 				try {
 					editor.setLevel(new Level(f));
-					current = f;
+					setCurrentFile(f);
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -186,7 +186,7 @@ public class EditorMain {
 			if (f != null) {
 				try {
 					editor.getLevel().save(f);
-					current = f;
+					setCurrentFile(f);
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}

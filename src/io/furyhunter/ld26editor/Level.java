@@ -38,6 +38,25 @@ public class Level {
 				p.y = s.nextFloat();
 				entities.add(p);
 			}
+			if (type.equals("Spring")) {
+				float x, y;
+				x = s.nextFloat();
+				y = s.nextFloat();
+				
+				switch (s.nextInt()) {
+				case 0:
+					SpringU u = new SpringU();
+					u.x = x;
+					u.y = y;
+					break;
+				case 1:
+					SpringD d = new SpringD();
+					d.x = x;
+					d.y = y;
+					break;
+				}
+				
+			}
 		}
 		
 		System.out.printf("%d entities found\n", entities.size());
@@ -78,15 +97,19 @@ public class Level {
 		switch (type) {
 		case Player:
 			en = new Player();
-			en.x = x;
-			en.y = y;
 			break;
 		case Tile:
 			en = new Tile();
-			en.x = x;
-			en.y = y;
 			break;
-		}
+		case SpringU:
+			en = new SpringU();
+			break;
+		case SpringD:
+			en = new SpringD();
+			break;
+		}		
+		en.x = x;
+		en.y = y;
 		
 		entities.add(en);
 	}
