@@ -133,38 +133,14 @@ public class Level {
 	
 	public void add(EntityTypes type, int x, int y, String metadata) {
 		Entity en = null;
-		switch (type) {
-		case Player:
-			en = new Player();
-			break;
-		case Tile:
-			en = new Tile();
-			break;
-		case SpringU:
-			en = new SpringU();
-			break;
-		case SpringD:
-			en = new SpringD();
-			break;
-		case SpringL:
-			en = new SpringL();
-			break;
-		case SpringR:
-			en = new SpringR();
-			break;
-		case Switch:
-			en = new Switch();
-			break;
-		case SwitchedTile:
-			en = new SwitchedTile();
-			break;
-		case SmallTile:
-			en = new SmallTile();
-			break;
-		case AboveTile:
-			en = new AboveTile();
-			break;
-		}		
+		try {
+			en = (Entity) type.type.newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
 		en.x = x;
 		en.y = y;
 		en.metadata = metadata;

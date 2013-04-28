@@ -1,22 +1,23 @@
 package io.furyhunter.ld26editor;
 
 public enum EntityTypes {
-	Tile("Tile", "Tile"),
-	Player("Player", "Player"),
-	SpringU("SpringU", "Spring Up"),
-	SpringD("SpringD", "Spring Down"),
-	SpringL("SpringL", "Spring Left"),
-	SpringR("SpringR", "Spring Right"),
-	Switch("Switch", "Switch"),
-	SwitchedTile("SwitchedTile", "Switched Tile"),
-	SmallTile("SmallTile", "Small Tile"),
-	AboveTile("AboveTile", "Above Tile");
+	Tile(Tile.class, "Tile"),
+	Player(Player.class, "Player"),
+	SpringU(SpringU.class, "Spring Up"),
+	SpringD(SpringD.class, "Spring Down"),
+	SpringL(SpringL.class, "Spring Left"),
+	SpringR(SpringR.class, "Spring Right"),
+	Switch(Switch.class, "Switch"),
+	SwitchedTile(SwitchedTile.class, "Switched Tile"),
+	SmallTile(SmallTile.class, "Small Tile"),
+	AboveTile(AboveTile.class, "Above Tile"),
+	NextLevel(NextLevel.class, "Next Level");
 	
-	String simple;
+	Class<?> type;
 	String display;
 	
-	private EntityTypes(String simple, String display) {
-		this.simple = simple;
+	private EntityTypes(Class<?> simple, String display) {
+		this.type = simple;
 		this.display = display;
 	}
 	

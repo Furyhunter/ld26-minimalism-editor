@@ -49,7 +49,7 @@ public class EditorPanel extends JPanel {
 					Class itstype = level.remove(e.getX() + offx, e.getY() + offy);
 					if (itstype != null) {
 						for (EntityTypes v : EntityTypes.values()) {
-							if (v.simple.equals(itstype.getSimpleName())) {
+							if (v.type.equals(itstype)) {
 								type = v;
 								myparent.getComboBox().setSelectedItem(v);
 								break;
