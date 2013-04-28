@@ -8,7 +8,9 @@ public enum EntityTypes {
 	SpringL("SpringL", "Spring Left"),
 	SpringR("SpringR", "Spring Right"),
 	Switch("Switch", "Switch"),
-	SwitchedTile("SwitchedTile", "Switched Tile");
+	SwitchedTile("SwitchedTile", "Switched Tile"),
+	SmallTile("SmallTile", "Small Tile"),
+	AboveTile("AboveTile", "Above Tile");
 	
 	String simple;
 	String display;

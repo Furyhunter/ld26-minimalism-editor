@@ -72,9 +72,29 @@ public class Level {
 				}
 				
 			}
+			
 			if (type.equals("SwitchedDoor")) {
 				SwitchedTile sd = new SwitchedTile();
+				sd.x = s.nextFloat();
+				sd.y = s.nextFloat();
 				
+				entities.add(sd);
+			}
+			
+			if (type.equals("SmallTile")) {
+				SmallTile a = new SmallTile();
+				a.x = s.nextFloat();
+				a.y = s.nextFloat();
+				
+				entities.add(a);
+			}
+			
+			if (type.equals("AboveTile")) {
+				AboveTile a = new AboveTile();
+				a.x = s.nextFloat();
+				a.y = s.nextFloat();
+				
+				entities.add(a);
 			}
 		}
 		
@@ -137,6 +157,12 @@ public class Level {
 			break;
 		case SwitchedTile:
 			en = new SwitchedTile();
+			break;
+		case SmallTile:
+			en = new SmallTile();
+			break;
+		case AboveTile:
+			en = new AboveTile();
 			break;
 		}		
 		en.x = x;
