@@ -173,7 +173,7 @@ public class EditorMain {
 		}
 		
 		public void actionPerformed(ActionEvent e) {
-			JFileChooser fc = new JFileChooser();
+			JFileChooser fc = new JFileChooser(current != null ? current.getAbsolutePath() : "");
 			fc.showOpenDialog(frmMinimalismEditor);
 			
 			File f = fc.getSelectedFile();
@@ -195,7 +195,7 @@ public class EditorMain {
 		}
 		
 		public void actionPerformed(ActionEvent e) {
-			JFileChooser fc = new JFileChooser();
+			JFileChooser fc = new JFileChooser(current != null ? current.getAbsolutePath() : "");
 			fc.showSaveDialog(frmMinimalismEditor);
 			
 			File f = fc.getSelectedFile();
